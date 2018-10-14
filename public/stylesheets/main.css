@@ -1,0 +1,176 @@
+.bg-company-red {
+    background-color: black;
+}
+body{
+    font-family: Merriweather,serif !important;
+}
+
+nav .form-control{
+    border-radius: .5rem;
+}
+nav{
+    margin-bottom: 1rem;
+}
+
+.carousel-inner {
+    border-radius: 25px;
+    background-color: rgba(0,0,0,0);
+    overflow: hidden;
+}
+#car{
+    margin-top: 10px;
+}
+
+.navbar-dark .navbar-nav .active>.nav-link:hover{
+    color: gray;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; 
+ }
+ 
+   
+div.dropdown-menu{
+    background:black;
+}
+.dropdown-menu .dropdown-item{
+     background:black;
+    color: white;
+}
+a.dropdown-item:hover{
+    background:darkturquoise;
+    color: black;
+}
+.rounded{
+        border-radius: 100px;
+}
+#profilePic{
+    height:200px;
+    width:200px;
+     border-radius: 100px;
+}
+.bg {
+  background: url('../img/carouelbackground.jpg') no-repeat center center;
+  position: fixed;
+  width: 100%;
+  height: 350px; 
+  top:0;
+  left:0;
+  z-index: -1;
+}
+
+#profileItems{
+    margin: 2rem;
+    padding: 1.5rem;
+    background-color: black;
+    color: white;
+    
+}
+.prof{
+    margin-top: 3rem
+}
+.items{
+     margin-left:  2rem;
+}
+.list-group-item {
+    background-color: black;
+    color: wheat;
+    padding: 10px;
+}
+/*.list-group-item:hover {*/
+/*    background:white;*/
+    
+/*}*/
+ .crl{
+    height:450px;
+    width:100%;
+   
+}
+.book{
+    height: 125px;
+    width: 100px;
+}
+#landbook {
+    width: 100%;
+    height: 500px;
+    overflow: scroll;
+}
+#latest{
+    margin-top:1px;
+    padding-left:10px;
+    margin-right:3px;
+    background-color:#f5f6fc;
+}
+
+
+div.scrollmenu {
+    background-color: #333;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+    background-color: #777;
+}
+
+
+.table-wrapper-scroll-y {
+  display: block;
+  max-height: 400px;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.chapterPage p{
+    font-family: Merriweather,serif ;
+    font-size: 18px ;
+    font-weight: 400 ;
+}
+.chapback{
+    background:#ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
+.edit-item-form{
+    display: none;
+}
+.replycommentForm{
+    display: none;
+}
+#new_comment{
+    display: none;
+}
+.index{
+    display: none;
+}
+#Index{
+    cursor: pointer;
+}
+#Synopsis{
+    cursor: pointer;
+}
+
+footer{
+	position: fixed;
+	bottom: 0;
+}
+
+@media (max-height:800px){
+	footer { position: static; }
+}

@@ -1,0 +1,127 @@
+<% include ../partials/headerauthChap %>
+<style>
+    body{
+        background:#e9ecef;
+    }
+</style>
+
+<!-- New chapter button-->
+    <div class="container">
+        <div class="items">
+            <div class="row">
+            <div class="col-md-3">
+        </div>
+            <div class="col-md-9">
+                <p class="text-right">
+                    <p>
+              <a class="btn btn-primary btn-large" href="/books/<%=book._id%>/chapters/new">+ New Chapter</a>
+ </p>
+                    </p>
+                </div>
+        </div>
+        </div>
+      <!--showing the boks chapters in columns -->
+        <div class="items">
+            <div class="row">
+            <div style="background:white;padding-top:8px;padding-left:28px;"  class="col-md-3 jumbotron">
+                <div  class="row">
+                    <p>
+                    <img style="height:350px;width:250px; border: 3px solid red;" class="float-left hvr-grow" src="<%=book.image%>">
+                </p>
+                </div>
+               <p> <h3 >Title:<%=book.title%></h3> </p> 
+               <p>Synopsis:</p>
+                <p><%-book.synopsis%></p>
+        </div>
+            <div class="col-md-9">
+                <table class="table table-dark">
+                    
+                     <thead>
+      <tr>
+        <th scope="col">Chapter N.o</th>
+        <th scope="col">Chapter Title</th>
+        <th scope="col">Options</th>
+        <th scope="col">Release time</th>
+      </tr>
+    </thead>
+    <tbody>
+                   <%book.chapters.forEach(function(chapter){%>
+                   
+                <tr>
+                    
+                    <td>
+                        <p><a href="/books/<%=book._id%>/chapters/<%=chapter._id%>"><%=chapter.chapter_no%></a></p>
+                    </td>
+                    <td>
+                         <p style="color:white;"><%=chapter.title%></p>
+                    </td>
+                    
+                 <td>
+                        <% if(currentUser &&book.author.id.equals(currentUser._id)) {%>
+                         <a class="btn btn-warning btn-sm" href="/books/<%=book._id%>/chapters/<%=chapter._id%>/edit">Edit</a>
+                        <form style="display:inline;" class="deletecommentForm" action="/books/<%=book._id%>/chapters/<%=chapter._id%>/?_method=DELETE" method="POST">
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                        <% } %>
+                      
+                </td>
+                <td>
+                    <p  style="color:white;">
+                        <%=moment(chapter.datechap).format("MMM Do YY, h:mm:ss a");%>
+                    </p>
+                </td>
+                </tr>
+                 <% })%>
+                 </tbody>
+                   </table>
+                </div>
+           
+        </div>
+        </div>
+        
+       
+    </div>
+<script type="text/javascript">
+
+//   showing the swal delete confirmation 
+   $('.deletecommentForm').one('submit', function(e) {
+    e.preventDefault();
+      swal({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  type: 'warning',
+  confirmButtonText: 'Yes, delete it!',
+  cancelButtonText: 'No, cancel!',
+  confirmButtonColor: '#FF1919',
+  cancelButtonColor: '##8CD4F5',
+  showCancelButton: true,
+  
+}).then((result) => {
+   
+  if (result.value) {
+      $(this).submit();
+    swal(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  } else if (
+    result.dismiss === "cancel" ||result.dismiss === "overlay"
+  ) {
+       location.reload(true);
+      
+      $(this).find('button').blur();
+    swal(
+      'Cancelled',
+      'Your comment  is safe :)',
+      'error'
+    )
+     
+  }
+})
+    
+});
+
+</script>    
+
+<% include ../partials/footer %>

@@ -1,0 +1,132 @@
+<% include ../partials/headerauthBook %>
+<div class="container">
+    
+        <style>
+        body{
+            background:#f2f2f2;
+            font-family: Merriweather,serif !important;
+        }
+    </style>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div style="width:50%" class="wrap-login100">
+				<form action ="/books/<%=book._id%>/?_method=PUT" method="POST" enctype="multipart/form-data" class="login100-form validate-form">
+					<span class="login100-form-title p-b-26">
+						Edit the book:<%=book.title%>
+					</span>
+					<span class="login100-form-title p-b-48">
+					<i class="zmdi zmdi-book"></i>
+					</span>
+					
+					<div class="wrap-input100 " >
+					    <label>Book Image</label>
+						<input class="input100" type="file" id="image" name="image" accept="image/*">
+						<span class="focus-input100" ></span>
+					</div>
+					<label>Book Title</label>
+					<div class="wrap-input100 " >
+					    
+						<input class="input100" type="text" name="novels[title]" value="<%=book.title%>"  required>
+						<span class="focus-input100"></span>
+					</div>
+
+					<div style="border:none;" class="wrap-input100" >
+					<label>Genre</label>
+						<select class="form-control input100" type="text" name="novels[genre]" required>
+                <option value="<%=book.genre%>"  selected hidden><%=book.genre%></option>
+                 <option value="Action">Action</option>
+                  <option value="Adventure">Adventure</option>
+                  <option value="Adult">Adult</option>
+                  <option value="Classics">Classics</option>
+                  <option value="Fiction">Fiction</option>
+                  <option value="Fanfiction">Fanfiction</option>
+                  <option value="Fantasy">Fantasy</option>
+                  <option value="Horror">Horror</option>
+                  <option value="Humor">Humor</option>
+                  <option value="Mystery">Mystery</option>
+                  <option value="Poetry">Poetry</option>
+                  <option value="Romance">Romance</option>
+                  <option value="Science Fiction">Science Fiction</option>
+                  <option value="Short Story">Short Story</option>
+                  <option value="Spiritual">Spiritual</option>
+                  <option value="Thriller">Thriller</option>
+                  <option value="Urban">Urban</option>
+            </select>
+            <span class="focus-input100"></span>
+					</div>
+					
+					
+					
+					
+					
+					<div style="border:none;" class="wrap-input100" >
+						<label>Range</label>
+            <select class="form-control input100" type="text" name="novels[range]" required>
+                <option value="<%=book.range%>"  selected hidden><%=book.range%></option>
+                 <option value="General Audience">General Audience</option>
+                  <option value="Parental Guidance Suggested">Parental Guidance Suggested</option>
+                  <option value="Parents Strongly cautioned">Parents Strongly cautioned</option>
+                  <option value="Above 15">Above 15</option>
+                  <option value="Only Above 18">Only Above 18</option>
+            </select>
+            <span class="focus-input100"></span>
+					</div>
+					
+					
+				<div class="wrap-input100 " >
+					
+			<label>Synopsis</label>
+            <textarea class="form-control input100" type="text" id="summernote" name="novels[synopsis]" value=""><%=book.synopsis%></textarea>
+              <span class="focus-input100"></span>
+					</div>
+					
+				
+
+				
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Edit
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	
+	
+<!--===============================================================================================-->
+
+<!--===============================================================================================-->
+	<script src="/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+
+<!--===============================================================================================-->
+	<script src="/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="/js/main.js"></script>
+    
+    </div>
+       
+
+<script>
+   
+      $('#summernote').summernote({
+        toolbar:[['style', ['bold', 'italic', 'underline', 'clear']]],
+        tabsize: 2,
+        height: 300
+      });
+</script>
+
+<% include ../partials/footer %>

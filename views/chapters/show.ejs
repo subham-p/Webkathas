@@ -1,0 +1,356 @@
+<html>
+    <head>
+        <link rel="icon" type="image/png" href="https://res.cloudinary.com/webkathas/image/upload/v1537894727/Genre/black_logo.png">
+        <title>
+           Web Kathas
+           </title>
+           <meta name="theme-color" content="#000">
+           <link rel="stylesheet" href="/stylesheets/chapter.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+        <link href="/css/hover-min.css" rel="stylesheet"> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+        <script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">            
+        <!-- Link Swiper's CSS -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+                 <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+            <script src="/script/ajax.js" type="text/javascript"></script>
+    </head>
+    <body>
+       <script src="https://unpkg.com/ionicons@4.4.2/dist/ionicons.js"></script>
+        <nav class="navbar navbar-dark navbar-expand-lg bg-company-red" style="background-color: black;">
+            <a class="navbar-brand " id="logo"href="/">
+                <img src="https://res.cloudinary.com/webkathas/image/upload/v1536328739/Genre/logo.png" width="auto" height="30" alt="logo">
+            </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                       <li class="nav-item active">
+                            <a class="nav-link navbar-brand" href="/books/<%=book._id%>"><%=book.title%> </a>
+                          </li>
+                      <li class="nav-item active">
+                            <div class="navbar-brand " >[Chapter N.O-<%=chapter.chapter_no%>:<%=chapter.title%>] </div>
+                          </li>
+                     </ul>
+                      <ul class="navbar-nav ">
+                        <% if(!currentUser){ %>
+                          <li class="nav-item active">
+                            <a class="nav-link" href="/login">Login </a>
+                          </li>
+                           <li class="nav-item active">
+                            <a class="nav-link" href="/register">Register</a>
+                          </li>
+                           <% } else { %>
+                                <li>
+                            <a class="nav-link" href="/profile/<%=currentUser._id%>"> <%= currentUser.username %></a></li>
+                          <li class="nav-item active">
+                            <a class="nav-link" href="/logout">Logout </a>
+                          </li>
+                          <% } %>
+                      </ul>
+                </div>
+        </nav>
+         <div class="container">
+        <% if(error&& error.length>0){ %>
+        <div id="Error" class="alert alert-danger" role="alert">
+        <%=error%>
+        </div>
+        <% } %>
+        <% if(success&& success.length>0){ %>
+        <div id="Success" class="alert alert-success" role="alert">
+        <%=success%>
+        </div>
+        <% } %>
+    </div>
+    
+    
+
+
+
+
+<div id="mySidenav1" class="sidenav1">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav1()">&times;</a>
+   <a id="night" style="color:black; background:yellow" value=nighty href="javascript:void(0)">Night Mode</a>
+   <a style="color:white; text-decoration: none; " href="javascript:void(0)">Font Size
+   <span style="font-size:18px" id="fontIncrease">+Font Increase</span>
+  <span style="font-size:18px" id="fontOriginal">*Font Original</span> 
+  <span style="font-size:18px" id="fontDecrease">-Font Decrease</span></a>
+</div>
+
+
+
+
+<!--sid hovers-->
+<!--sidebar-->
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav();closeNav1()">&times;</a>
+  <span>Index</span>
+  <%book.chapters.forEach( function(Chapter) {%>
+  <%if(Chapter._id.equals(chapter._id)) {%>
+  <a style="color:white;" href="/books/<%=book._id%>/chapters/<%=Chapter._id%>">Chapter <%=Chapter.chapter_no%>:<%=Chapter.title%></a>
+  <% } else {%>
+    <a href="/books/<%=book._id%>/chapters/<%=Chapter._id%>">Chapter <%=Chapter.chapter_no%>:<%=Chapter.title%></a>
+  <% }%>
+  <% }) %>
+</div>
+
+
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+<div id="main">
+  
+</div>
+
+<!--sidebar-->
+
+<div class="container">
+    
+    </div>
+ 
+     <div class="row">
+         <div class=" col-lg-2 col-sm-1">
+
+         </div>
+        <div class="col-lg-8 col-sm-10">
+             <!--<a><p class="text-center">Index</p></a>-->
+             <a href="#"><div class="text-center" onclick="openNav()">Index</div></a>
+             <%if(prev) {%>
+                <span class="float-left">
+                  <a  class="btn btn-primary btn-large" href="/books/<%=book._id%>/chapters/<%=prev._id%>">Previous Chapter</a>
+                 </span>
+                 <% }%>
+            
+            
+            <%if(next) {%>
+            <span class="float-right">
+              <a class="btn btn-primary btn-large" href="/books/<%=book._id%>/chapters/<%=next._id%>">Next Chapter</a>
+             </span>
+             <% }%>
+            
+         </div>
+         <div class="col-lg-2 col-sm-1">
+             
+             
+         </div>
+     </div>
+ 
+    
+    
+    
+    <div class="row">
+        <div class="col-lg-2 col-sm-1">
+            
+        </div>
+         <div class="col-lg-8 col-sm-10">
+            <div id="ChapterMode"  style="background:#fff; padding-top:10px; margin-bottom: 0;" class="jumbotron chapback chapterPage">
+        <p>
+            <div class="row">
+            </div>
+            <img style="width:50px;height:50px;" class="float-left "src="https://res.cloudinary.com/webkathas/image/upload/v1536487074/Genre/chapter.png">
+            <a href="#" class="float-right" ><ion-icon size="large" onclick="openNav1()" name="cog"></ion-icon></a>
+            <h3>Chapter <%=chapter.chapter_no%>:<%=chapter.title%></h3>
+            </p>
+        
+        <p style="padding-top:10px;"  class="chapterPage" ><%-chapter.text%></p>
+    </div>
+    
+    
+    <div id="authorThought" style="margin-bottom:0px;" class="jumbotron chapback chapterPage">
+        <h3>Author Thought:</h3>
+        <img style="width:50px;height:50px;border-radius: 50%;" src="<%= book.author.id.profilePic %>">
+        <img style="width:100px;height:100px;" class="float-right"src="https://res.cloudinary.com/webkathas/image/upload/v1536474855/Genre/author%20thought.png">
+        
+        <span><%= book.author.id.username %></span>
+        <p ><%-chapter.author_thought%></p>
+    </div>
+        </div>
+        <div class="col-lg-2 col-sm-1">
+            
+        </div>
+    </div>
+    
+    
+    <div class="row">
+         <div class="col-lg-2 col-sm-1">
+
+         </div>
+        <div class="col-lg-8 col-sm-10">
+             
+             <%if(prev) {%>
+                <span class="float-left">
+                  <a  class="btn btn-primary btn-large" href="/books/<%=book._id%>/chapters/<%=prev._id%>">Previous Chapter</a>
+                 </span>
+                 <% }%>
+            
+            
+            <%if(next) {%>
+            <span class="float-right">
+              <a class="btn btn-primary btn-large" href="/books/<%=book._id%>/chapters/<%=next._id%>">Next Chapter</a>
+             </span>
+             <% }%>
+            <!--<a><p class="text-center">Index</p></a>-->
+           <a href="#"><div class="text-center" onclick="openNav()">Index</div></a>
+         </div>
+         <div class="col-lg-2 col-sm-1">
+             
+             
+         </div>
+     </div>
+     
+ 
+   
+   
+  <!--comment form -->
+  
+   
+   
+       <div style="margin-top:5%;"class="row">
+         <div class="col-lg-2 col-sm-1">
+
+         </div>
+        <div class="col-lg-8 col-sm-10">
+             
+                      
+         <div class="pull-right">
+         <button class="btn  btn-dark newcommentButton">+New Comment</button>
+       
+        <form id="new_comment" action ="/books/<%=book._id%>/chapters/<%=chapter._id%>/comments" method="POST">
+        <div class="form-group">
+                    <textarea class="form-control summernote" type="text" name="comment[text]" ></textarea>
+                </div>
+        <% if(currentUser) {%>
+        <div class="form-group">
+            <button style="width:100px;" type="submit" class="btn but btn-sm btn-primary btn-block">Submit</button>
+        </div>
+         <% } else { %>
+         <div class="form-group">
+            <a href="/login" class="btn but btn-sm btn-primary btn-block">Submit</a>
+        </div>
+          <% } %>
+    </form>
+
+    </div>
+  
+         </div>
+         <div class="col-lg-2 col-sm-1">
+ 
+         </div>
+     </div>
+ 
+
+<!--end comments-->
+   
+   <div class="row">
+         <div class="col-lg-2 col-sm-1">
+
+         </div>
+        <div class="col-lg-8 col-sm-10">
+             
+             <h2>Comments(<%=count%>)</h2>
+   
+   
+   
+   <div class="container">
+     
+       <div  id="commentshow" >
+        <% chapter.comments.forEach(function(comment){ %>
+         <hr>
+        <div class="commentSection" >
+         <div class="row">
+             <div class="col-md-2">
+                   <img style="width:50px;height:50px;border-radius: 50%;" src="<%=comment.author.id.profilePic %>">
+                  <strong><%= comment.author.id.username %>:</strong>
+             </div>
+             <div class="col-md-10">
+                 <div class="box sb2 chapterPage">
+                <p> <span><%- comment.text %></span></p> 
+                   <% if(comment.repliedTo.text!=null) { %>        
+                      <div  class="container box1 sb12">
+                        <p><em>Replied To:</em><strong><%= comment.repliedTo.userid.username %></strong></p>  
+                         <p><%- comment.repliedTo.text %></p> 
+                          </div>
+                       <% } %>
+</div>
+                    
+          <% if(currentUser) {%>                
+         <div class="pull-right inline">
+              <button  class="btn btn-sm btn-dark commentReply" >
+              Reply
+              </button>
+         </div> 
+           <% } else {%>
+           <div class="pull-right inline">
+              <a  class="btn btn-sm btn-dark " href="/login" >
+              Reply
+              </a>
+         </div> 
+         <% }%>
+            <% if(currentUser &&comment.author.id.equals(currentUser._id)) {%>
+            <div class="pull-right inline">
+                 <button  class="btn btn-sm btn-warning commentEdit " >
+              Edit
+              </button>
+        <form class="deletecommentForm inline" name="myForm" action="/books/<%=book._id%>/chapters/<%=chapter._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+            <button class="btn  btn-sm btn-danger " onclick=" return deleteButton()"  >Delete</button>
+        </form>
+            </div> 
+            
+            
+             <form  action ="/books/<%=book._id%>/chapters/<%=chapter._id%>/comments/<%=comment._id%>?_method=PUT" method="POST" class="edit-item-form">
+     
+                 <div class="form-group">
+                    <textarea class="form-control summernote1" type="text" name="comment[text]" ><%-comment.text%></textarea>
+                </div>
+                    <button style="width:100px;" type="submit" class="btn but btn-sm btn-primary btn-block commentEdit ">Edit</button>
+            </form>
+        <% } %>
+        <form class="replycommentForm" action ="/books/<%=book._id%>/chapters/<%=chapter._id%>/<%=comment._id%>/reply" method="POST">
+               <div class="form-group">
+                      <label>Reply to <%=comment.author.id.username%>:<%- comment.text %></label>
+                    <textarea class="form-control summernote" type="text" name="comment[text]" ></textarea>
+                </div>
+              
+                <div class="form-group">
+                    <button style="width:100px;" class="btn but btn-sm btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+             </div>
+         </div>
+       
+        
+          <% })%>
+          
+    </div>
+   </div>         
+        
+            
+         </div>
+         <div class="col-lg-2 col-sm-1">
+             
+             
+         </div>
+     </div>
+ 
+   
+   <script src="/script/chapter.js" type="text/javascript"></script>
+   
+   <script>
+      
+       $('.edit-item-form').hide();
+        $('.replycommentForm').hide();
+       
+        
+   </script>
+<% include ../partials/footer %>

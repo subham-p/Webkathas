@@ -1,0 +1,93 @@
+<% include partials/header %>
+<style>
+    .jumbotron a{
+       padding-left:2%;
+    }
+</style>
+<div style="background:#32383e;" class="jumbotron">
+    <div  class="container">
+                        <a  href="/genre/ALL"><img style="height:30px; width:30px;" src="https://res.cloudinary.com/webkathas/image/upload/v1536328739/Genre/logo.png" alt="All"> ALL</a>
+                        <a  href="/genre/Action"><img style="height:30px; width:30px;" src="https://res.cloudinary.com/webkathas/image/upload/v1537720121/Genre/action_2.png" alt="Action"> Action</a>
+                          <a  href="/genre/Adventure"><img style="height:30px; width:30px;" src="https://res.cloudinary.com/webkathas/image/upload/v1537720245/Genre/adventure.png" alt="Adventure"> Adventure</a>
+                          <a  href="/genre/Adult"><img  style="height:30px; width:30px;"src="https://res.cloudinary.com/webkathas/image/upload/v1537720244/Genre/adult.png" alt="Adult"> Adult</a>
+                          <a  href="/genre/Classics"><img style="height:30px; width:30px;" src="https://res.cloudinary.com/webkathas/image/upload/v1536328719/Genre/classics.ico" alt="Classics"> Classics</a>
+                          <a  href="/genre/Fiction"><img style="height:30px; width:30px;"src="https://res.cloudinary.com/webkathas/image/upload/v1537720245/Genre/fiction.png" alt="Fiction"> Fiction</a>
+                          <a  href="/genre/Fan fiction"><img style="height:30px; width:30px;"src="https://res.cloudinary.com/webkathas/image/upload/v1536328719/Genre/fanfiction.png" alt="Fan Fiction"> Fan fiction</a>
+                          <a  href="/genre/Fantasy"><img style="height:30px; width:30px;"src="https://res.cloudinary.com/webkathas/image/upload/v1536328720/Genre/fantasy.png" alt="Fantasy"> Fantasy</a>
+                          <a  href="/genre/Horror"><img style="height:30px; width:30px;"src="https://res.cloudinary.com/webkathas/image/upload/v1537720246/Genre/horror.png" alt="Horror"> Horror</a>
+                          <a  href="/genre/Humor"><img style="height:30px; width:30px;" src="https://res.cloudinary.com/webkathas/image/upload/v1537720246/Genre/humor.png" alt="Classics"> Humor</a>
+                          <a  href="/genre/Mystery"><img style="height:30px; width:30px;"src="https://res.cloudinary.com/webkathas/image/upload/v1537720246/Genre/mystery.png" alt="Mystery"> Mystery</a>
+                          <a  href="/genre/Poetry"><img style="height:30px; width:30px;"src="https://res.cloudinary.com/webkathas/image/upload/v1537720246/Genre/poetry.png" alt="Poetry"> Poetry</a>
+                          <a  href="/genre/Romance"><img style="height:30px; width:30px;" src="https://res.cloudinary.com/webkathas/image/upload/v1537720246/Genre/romance.png" alt="Romance"> Romance</a>
+                          <a  href="/genre/Science Fiction"><img style="height:30px; width:30px;" src="https://res.cloudinary.com/webkathas/image/upload/v1537720246/Genre/science_fiction.png" alt="Science"> Science Fiction</a>
+                          <a  href="/genre/Short Story"><img style="height:30px; width:30px;" src="https://res.cloudinary.com/webkathas/image/upload/v1537720246/Genre/short_story.png" alt="Short Story"> Short Story</a>
+                          <a  href="/genre/Spiritual"><img style="height:30px; width:30px;" src="https://res.cloudinary.com/webkathas/image/upload/v1537720246/Genre/spiritual.png" alt="Classics"> Spiritual</a>
+                          <a  href="/genre/Thriller"><img style="height:30px; width:30px;" src="https://res.cloudinary.com/webkathas/image/upload/v1537720246/Genre/thrill.png" alt="Thriller"> Thriller</a>
+                          <a  href="/genre/Urban"><img style="height:30px; width:30px;"src="https://res.cloudinary.com/webkathas/image/upload/v1537720247/Genre/urban.png" alt="Urban"> Urban</a>
+                       
+    </div>
+</div>
+<div class="container">
+  
+    <div class="row">
+            <div class="col-md-12">
+                <table  class="table table-dark ">
+                    <thead>
+                     <tr>
+                    <th scope="col">Book</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Rating</th>
+                  </tr>
+                    </thead>
+                    <tbody>
+                    <% book.forEach(function(Book){ %>
+                <tr>
+                    <td>
+                         <a href="/books/<%=Book._id%>">
+                    <img style="height: 125px;width: 100px;"class="img-thumbnail "src="<%=Book.image%>">
+                    <p><%=Book.title%></p>
+                </a>
+                
+                    </td>
+                    <td>
+                       <%=Book.author.id.username%>
+                    </td>
+                 <td>
+                     <%=Book.genre%>
+                </td>
+                
+                  <td>
+                  <%=moment(Book.date).format("Do MMMM  YYYY")%>
+
+                </td>
+                
+                <td>
+                       <%=Book.rating%>(<%=Book.ratings.length%>)
+                    </td>
+                </tr>
+                 <% })%>
+                 </tbody>
+                   </table>
+                </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+</div>
+
+
+
+
+
+
+     
+ 
+
+
+<% include partials/footer %>

@@ -1,0 +1,442 @@
+<% include ../partials/header %>
+
+<link rel="stylesheet" href="/stylesheets/user.css">
+
+        <div id="profileItems" class="jumbotron">
+            <div class="row">
+                <div class="col-md-3">
+                 <img id="profilePic" class="float-left" src="<%=user.profilePic%>">
+                 </div>
+                 <div class="col-md-3">
+                <p class="text-center prof">Username:<%=user.username%></p>
+                <p class="text-center prof">ID:<%=user._id%></p>
+            </div>
+            
+            <div class="col-md-3">
+                <p class="text-center prof"><i class="far fa-calendar-alt"></i> Joined on:<%=moment(user.date).format("MMM  YY");%></p>
+                
+            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+        <h4 class="text-center prof">About Me:</h4>
+        </div>
+        <div class="col-md-9">
+        <p><%=user.selfText%></p>
+        </div>
+    </div>
+    </div>
+     
+     
+     
+     <div class="container">
+         <% if(book[0]!=undefined) {%>
+         <div style="padding-bottom:10px;" class="row">
+              <div  class="col-md-3  ">
+                <li style="background:black;" class="list-group-item list-group-item-mine " >Originals</li>
+                </div>
+         </div>
+         <% }%>
+      <div class="row">
+            <% book.forEach(function(Book,index){ %>
+            
+            <div class="col-lg-3 col-sm-12 ">
+               <a href="/books/<%=Book._id%>">
+                    <img style="height: 225px;width: 150px;"src="<%=Book.image%>">
+                    <p><%=Book.title%></p>
+                </a>
+            </div>
+            <%if(((index+1)%4)===0) {%>
+              </div> <hr class="horizontalLine"> <div class="row">
+            <% }%>
+            <% }) %>
+            </div>
+             
+    </div>
+      
+        <div class="container items">
+            
+            
+            
+            <div style="padding-bottom:10px;" class="row ">
+                <% if(currentUser && currentUser._id.equals(user._id)) {%>
+            <div id="library" class="col-md-3  ">
+                <li style="background-color: black;
+    color: wheat;" class="list-group-item list-group-item-mine hvr-radial-out" >Library</li>
+                </div>
+                <% }%>
+                <div id="comment" class="col-md-3  ">
+                <li style="background-color: black;
+    color: wheat;" class="list-group-item ">Comments</li>
+                 </div>
+                <div id="reviews" class="col-md-3 ">
+                <li style="background-color: black;
+    color: wheat;" class="list-group-item  ">Reviews</li>
+                 </div>
+                 <% if(currentUser && currentUser._id.equals(user._id)) {%>
+                <div id="profSettings" class="col-md-3">
+                <li style="background-color: black;
+    color: wheat;" class="list-group-item  ">Profile Settings</li>
+                </div>
+                <% }%>
+        </div>
+        </div>
+        
+         <% if(currentUser && currentUser._id.equals(user._id)) {%>
+        <!--===========library=============-->
+         <div class="container library" >
+                <div class="row">
+            <% user.library.forEach(function(library,index){ %>
+            
+            <div class="col-lg-3 col-sm-12 ">
+               <a href="/books/<%=library.book.id%>">
+                    <img style="height: 225px;width: 150px;"src="<%=library.book.id.image%>">
+                    <p><%=library.book.id.title%></p>
+                </a>
+                <% if(currentUser &&currentUser._id.equals(user._id)) {%>
+            <form class="deletecommentForm" style="display:inline;" action="/books/<%=library.book.id._id%>/library/<%=library._id%>?_method=DELETE" method="POST">
+                 <button class="btn  btn-sm btn-danger " onclick=" return deleteButton()"  ><i class="far fa-trash-alt"></i></button>
+            </form>
+            <% } %> 
+            </div>
+            <%if(((index+1)%4)===0) {%>
+              </div> <hr class="horizontalLine"> <div class="row">
+            <% }%>
+            <% }) %>
+            </div>
+        </div>
+        
+        
+        <!--library release-->
+        
+      
+      
+     <%if(chapter[0]!=undefined){%> 
+      <div class="container library">
+  
+  <h2>Latest Chapter Release Of Books In libary</h2>
+   <div class="table-wrapper-scroll-y">
+
+  <table class="table table-hover table-dark ">
+    <thead>
+      <tr>
+        <th scope="col">Book</th>
+        <th scope="col">Chapter N.o&Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Release time</th>
+      </tr>
+    </thead>
+    <tbody>
+        
+        <%for(var i=0;i<chapter.length;i++){%>
+      <% chapter[i].forEach(function(Chapter){ %>
+      <tr>
+     <td><a href="/books/<%=Chapter.author.book_id._id%>"><%=Chapter.author.book_id.title%></a>: </td>
+    <td><a href="/books/<%=Chapter.author.book_id._id%>/chapters/<%=Chapter._id%>"><%=Chapter.chapter_no%> <%=Chapter.title%> </a></td>
+     <td><%=Chapter.author.id.username%>%></td>
+     <td> <%=moment(Chapter.datechap).fromNow();%></td>
+      <td> 
+      
+      
+      </td>
+ </tr>
+ <% })%>
+  <% }%>
+ <% }%>
+
+    </tbody>
+  </table>
+
+</div>
+
+</div>
+   <% }%>     
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!--===========library=============-->
+            
+           <!--===========Comments=============-->
+           
+           
+            <% if(currentUser && currentUser._id.equals(user._id)) {%>
+          
+          <div style="display:none;" class="container comment" >
+            <% } else{ %> 
+            
+            <div class="container comment" >
+                <% } %>
+                <div></div>
+                <% if(comment) {%>
+            <%comment.forEach(function(Comment,index){ %>
+            <hr>
+         <div class="row">
+             <div class="col-md-2">
+                   <img style="width:50px;height:50px;border-radius: 50%;" src="<%=Comment.author.id.profilePic %>">
+                  <strong><%= Comment.author.id.username %>:</strong>
+             </div>
+             <div class="col-md-10">
+                 <div class=" ">
+                <p> <span><%- Comment.text %></span></p> 
+                <div style="background:#e9ecef;" class="container ">
+                   <% if(Comment.repliedTo.text!=null) { %>        
+                        <p><em>Replied To:</em><strong><%= Comment.repliedTo.userid.username %></strong></p>  
+                         <p><%- Comment.repliedTo.text %></p> 
+                       <% } %>
+                       <p  style="color:#83848f;">
+                           <img style="width:45px;height:45px;" src="<%=Comment.book.bookid.image %>">
+                          <span><%=Comment.book.bookid.title%></span> 
+                          <span>chapter:<%=Comment.chapter.chapterid.chapter_no%></span>
+                           
+                       </p>
+                        </div>
+             </div>
+            </div>
+            
+           </div>
+            <% }) %>
+            <% } %>
+         
+        </div>
+           <!--===========Comments=============-->
+       <!--===========Reviews=============-->
+          
+          <div style="display:none;" class="container reviews" >
+               <% if(review) {%> 
+            <%review.forEach(function(Review,index){ %>
+           <hr>
+         <div class="row">
+             <div class="col-md-3">
+                   <img style="width:50px;height:50px;border-radius: 50%;" src="<%=Review.author.id.profilePic %>">
+                  <strong><%= Review.author.id.username %>:</strong>
+                  
+                  <table  class="table">
+                     <tr>
+                         <th >
+                              <label class="text-right" for="writingStyle">Writing Style</label>
+                             </th>
+                      <td>
+                         <div>   
+                                <div id="writingStyle"
+                                 data-rateyo-rating="<%=Review.writingStyle%>"
+                                 data-rateyo-num-stars="5"
+                                 ></div>
+                        </div>
+                      </td>
+                     </tr>
+                     
+                     <tr>
+                      <th scope="row">
+                           <label  for="grammarScore">Grammar Score</label>
+                          </th>
+                      <td>
+                      <div>
+                        <div id="grammarScore"
+                             data-rateyo-rating="<%=Review.grammarScore%>"
+                             data-rateyo-num-stars="5">
+                             
+                        </div>
+                                 
+                                 <input style="display:none;"  id="RgrammarScore" name="rating[grammarScore]" value="" >
+                        </div>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">
+                      <label  for="storyDevelopment">Story Development</label>
+                      </th>
+                      <td>
+                          <div>
+                            <div id="storyDevelopment"
+                                 data-rateyo-rating="<%=Review.storyDevelopment%>"
+                                 data-rateyo-num-stars="5"
+                                 ></div>
+                                 
+                                 <input  style="display:none;"id="RstoryDevelopment" name="rating[storyDevelopment]" value="">
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                       <label  for="characterDesign">Character Design</label>
+                      </th>
+                      <td>
+                          <div>
+                            <div id="characterDesign"
+                                 data-rateyo-rating="<%=Review.characterDesign%>"
+                                 data-rateyo-num-stars="5"
+                                ></div>
+                                 
+                                 <input style="display:none;"id="RcharacterDesign" name="rating[characterDesign]" value="">
+                        </div>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">
+                          <label  for="worldBackground">World Background</label>
+                          </th>
+                      <td>
+                        <div>
+                            <div id="worldBackground"
+                                 data-rateyo-rating="<%=Review.worldBackground%>"
+                                 data-rateyo-num-stars="5"
+                                 ></div>
+                                 
+                                 <input style="display:none;"id="RworldBackground" name="rating[worldBackground]" value="">
+                        </div>
+                      </td>
+                    </tr>
+                 </table>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+             </div>
+             <div class="col-md-9">
+                 <div class=" ">
+                <p> <span><%- Review.review %></span></p> 
+                <div style="background:#e9ecef;" class="container ">
+                       <p  style="color:#83848f;">
+                           <img style="width:45px;height:45px;" src="<%=Review.book.bookid.image %>">
+                          <span><%=Review.book.bookid.title%></span> 
+                
+                           
+                       </p>
+                        </div>
+             </div>
+            </div>
+            
+           </div>
+            <% }) %>
+         <% } %>
+        </div>
+           <!--===========Reviews=============-->
+           
+           <!--===========Profile Settings=============-->
+           
+           
+           <div style="width:30%; margin:25px auto; display:none;" class="container profSettings ">
+           
+                <div class="form-group">
+            <label>Username</label>
+         <p class="form-control" type="text" name="profile[username]" value=""><%=user.username%></p>
+        </div>
+           
+           <form action ="/profile/<%=user._id%>/?_method=PUT" method="POST" enctype="multipart/form-data">
+       
+         <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                </div>
+        
+      <div class="form-group">
+            <label>First Name</label>
+         <input class="form-control" type="text" name="profile[firstName]" value="<%=user.firstName%>">
+        </div>
+        
+        <div class="form-group">
+            <label>Last Name</label>
+         <input class="form-control" type="text" name="profile[lastName]" value="<%=user.lastName%>">
+        </div>
+        
+        <div class="form-group">
+            <label>About Yourself</label>
+       <textarea class="form-control" type="text"  name="profile[selfText]" value=""><%=user.selfText%></textarea>
+        </div>
+        
+        <div class="form-group">
+            <button class="btn btn-lg btn-primary btn-block">Submit</button>
+        </div>
+        
+    </form>
+           
+           
+</div>           
+           
+           
+           
+           
+            <!--===========Profile Settings=============-->
+           
+           
+           
+        
+    </div>
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css" rel="stylesheet"/>
+    <script src="/script/user.js" type="text/javascript"></script>
+<script >
+
+    
+     $('.deletecommentForm').one('submit', function(e) {
+    e.preventDefault();
+      swal({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  type: 'warning',
+  confirmButtonText: 'Yes, delete it!',
+  cancelButtonText: 'No, cancel!',
+  confirmButtonColor: '#FF1919',
+  cancelButtonColor: '##8CD4F5',
+  showCancelButton: true,
+  
+}).then((result) => {
+   
+  if (result.value) {
+      $(this).submit();
+    swal(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  } else if (
+    result.dismiss === "cancel" ||result.dismiss === "overlay"
+  ) {
+       location.reload(true);
+      
+      $(this).find('button').blur();
+    swal(
+      'Cancelled',
+      'Your comment  is safe :)',
+      'error'
+    )
+     
+  }
+})
+    
+});
+
+</script>    
+<% include ../partials/footer %>
