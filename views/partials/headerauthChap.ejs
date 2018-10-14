@@ -51,6 +51,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 <!--===============================================================================================-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     </head>
     <body>
        
@@ -64,13 +65,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                        <li class="nav-item active">
-                        <a class="nav-link" href="/author/<%=book.author.id%>" >Books</a>
+                        <a class="nav-link" href="/author/<%=book.author.id%>" >Books <i class="fas fa-book"></i></a>
                       </li>
                        <li class="nav-item active">
-                        <a class="nav-link" > Guidance</a>
+                        <a class="nav-link"  href="/guidance"  > Guidance <i class="fas fa-info"></i></a>
                       </li>
                        <li class="nav-item active">
-                        <a class="nav-link" >Discord</a>
+                        <a class="nav-link" href="https://discord.gg/fwc2kCq" >Discord <i class="fab fa-discord"></i></a>
                       </li>
                      </ul>
                       <ul class="navbar-nav ">
@@ -82,7 +83,7 @@
                             <a class="nav-link" href="/register">Register</a>
                           </li>
                            <% } else { %>
-                                <li><a class="nav-link" href="/profile/<%=currentUser._id%>"> <%= currentUser.username %></a></li>
+                                <li><a class="nav-link" href="/profile/<%=currentUser._id%>"> <%= currentUser.username %><i class="far fa-user"></i></a></li>
                           <li class="nav-item active">
                             <a class="nav-link" href="/logout">Logout </a>
                           </li>
