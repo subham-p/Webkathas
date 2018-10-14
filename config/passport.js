@@ -207,10 +207,10 @@ module.exports = function(passport) {
 	    				newUser.google.email = profile.emails[0].value;
 	    				 newUser.local.email = profile.emails[0].value;
 	    				 newUser.date=new Date();
-	    				var newSize="300"
-                        var str =profile._json.image.url
-	    				var res = str.split("?sz=50")[0]+"?sz="+newSize
-	    				newUser.profilePic=res;
+	    				// var newSize="300"
+         //               var str =profile._json.image.url
+	    				// var res = str.split("?sz=50")[0]+"?sz="+newSize
+	    				// newUser.profilePic=res;
 
 	    				newUser.save(function(err){
 	    					if(err)
