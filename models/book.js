@@ -6,7 +6,7 @@ Chapter= require("./chapter");
 
 var bookSchema = new mongoose.Schema({
    title: String,
-   image: String,
+   image: {type:String,default:"https://res.cloudinary.com/webkathas/image/upload/v1539693201/Book_cover.jpg"},
    imageId: String,
    synopsis: String,
    range:String,
