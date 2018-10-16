@@ -133,6 +133,7 @@ module.exports = function(passport) {
 	    				newUser.facebook.email = profile.emails[0].value;
 	    			    newUser.profilePic=profile.photos[0].value
                         newUser.local.email = profile.emails[0].value;
+                        newUser.local.isVerified = true;
                         newUser.date=new Date();
 	    				newUser.save(function(err){
 	    					if(err)
@@ -206,6 +207,7 @@ module.exports = function(passport) {
 	    				newUser.google.name = profile.displayName;
 	    				newUser.google.email = profile.emails[0].value;
 	    				 newUser.local.email = profile.emails[0].value;
+	    				 newUser.local.isVerified = true;
 	    				 newUser.date=new Date();
 	    				var newSize="300"
                         var str =profile._json.image.url
