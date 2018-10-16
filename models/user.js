@@ -24,6 +24,12 @@ var UserSchema = new mongoose.Schema({
 		email: String,
 		name: String
 	},
+	twitter: {
+		id: String,
+		token: String,
+		email: String,
+		name: String
+	},
     profilePic:{type:String,default:"https://res.cloudinary.com/webkathas/image/upload/v1536643285/Genre/user.png"},
     profileId: String,
     firstName:String,

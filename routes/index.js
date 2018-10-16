@@ -29,8 +29,8 @@ var upload = multer({ storage: storage, fileFilter: imageFilter})
 var cloudinary = require('cloudinary');
 cloudinary.config({ 
   cloud_name: 'webkathas', 
-  api_key: 827811569146812, 
-  api_secret: 'lXTvbD9lITzELBCB0ddN4ILWieM'
+  api_key: process.env.CLOUDINARY_KEY, 
+  api_secret: process.env.CLOUDINARY_KEY
 });
 
 
@@ -168,6 +168,27 @@ router.get('/auth/google', passport.authenticate('google', {scope: ['email']}));
       }
   });
 
+
+
+//=========================
+//twitter signup
+//=========================
+router.get('/auth/twitter', passport.authenticate('twitter'));
+
+	router.get('/auth/twitter/callback', 
+	  passport.authenticate('twitter', { 
+	                                      failureRedirect: '/' }),function(req, res) {
+     
+      console.log(req.user.username)
+      if(!req.user.username){
+           res.redirect('/username/' + req.user._id)
+      }
+      else{
+           req.flash("success","welcome "+req.user.username)
+            res.redirect('/profile/' + req.user._id);
+  
+      }
+  });
 
 //===============================================
 //password reset
