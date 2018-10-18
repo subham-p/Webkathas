@@ -74,7 +74,11 @@
         <% } %>
     </div>
     
-    
+    <style>
+        .note-popover .popover-content, .card-header.note-toolbar {
+        visibility: hidden;
+}
+    </style>
 
 
 
@@ -206,13 +210,17 @@
              
          </div>
      </div>
+     </div>
+     </div>
      
  
    
    
   <!--comment form -->
   
-   
+   <div class="container">
+       
+   </div>
    
        <div style="margin-top:5%;"class="row">
          <div class="col-lg-2 col-sm-1">
@@ -221,7 +229,7 @@
         <div class="col-lg-8 col-sm-10">
              
                       
-         <div class="pull-right">
+         <div class="pull-left">
          <button class="btn  btn-dark newcommentButton">+New Comment</button>
        
         <form id="new_comment" action ="/books/<%=book._id%>/chapters/<%=chapter._id%>/comments" method="POST">
@@ -234,7 +242,7 @@
         </div>
          <% } else { %>
          <div class="form-group">
-            <a href="/login" class="btn but btn-sm btn-primary btn-block">Submit</a>
+            <a  style="width:100px;" href="/login" class="btn but btn-sm btn-primary btn-block">Submit</a>
         </div>
           <% } %>
     </form>
@@ -283,20 +291,20 @@
 </div>
                     
           <% if(currentUser) {%>                
-         <div class="pull-right inline">
+         <div class="pull-left inline">
               <button  class="btn btn-sm btn-dark commentReply" >
               Reply
               </button>
          </div> 
            <% } else {%>
-           <div class="pull-right inline">
+           <div class="pull-left inline">
               <a  class="btn btn-sm btn-dark " href="/login" >
               Reply
               </a>
          </div> 
          <% }%>
             <% if(currentUser &&comment.author.id.equals(currentUser._id)) {%>
-            <div class="pull-right inline">
+            <div style="padding-left:5px;" class="pull-left inline">
                  <button  class="btn btn-sm btn-warning commentEdit " >
               Edit
               </button>

@@ -2,17 +2,18 @@
      
       $('.summernote').summernote({
         placeholder: 'Comment',
-        toolbar:[['style', ['bold', 'italic', 'underline', 'clear']]],
-        tabsize: 2,
-         height: 100,
-        width:500
+		  height: 100,                 // set editor height
+		  minHeight: null,             // set minimum height of editor
+		  maxHeight: null,             // set maximum height of editor
+		 
       });
      $('.summernote1').summernote({
        
-        toolbar:[['style', ['bold', 'italic', 'underline', 'clear']]],
-        tabsize: 2,
-        height: 100,
-        width:500
+        
+		  height: 100,                 // set editor height
+		  minHeight: null,             // set minimum height of editor
+		  maxHeight: null,             // set maximum height of editor
+		 
       });
      
      
