@@ -145,7 +145,7 @@ router.delete("/books/:id/chapters/:chapter_id",middleware.checkChapterOwnership
                 } else {
                     chapter.remove();
                     req.flash("success","chapters removed");
-                     res.redirect("/author/"+req.user._id);
+                     res.redirect("/author/"+req.user._id+"/books/"+req.params.id);
                 }
             });
 });
