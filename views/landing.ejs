@@ -260,7 +260,7 @@
       
         <% recomended.forEach(function(Recom){ %>
         <div class="swiper-slide sld2" >
-          <a class="hvr-grow" href="books/<%=Recom.bookid%>"><img  src="<%=Recom.image%>">
+          <a class="hvr-grow" href="books/<%=Recom.bookid%>"><img class="profBokImg"  src="<%=Recom.image%>">
           <p><%=Recom.title%></p>
           </a>
           <% if(currentUser &&currentUser.isAdmin) {%>
@@ -286,7 +286,7 @@
         <% book.slice(-20).reverse().forEach(function(Book){ %>
         <div class="swiper-slide sld1" >
           <a class="hvr-grow" href="books/<%=Book._id%>">
-            <img  src="<%=Book.image%>"> 
+            <img class="profBokImg"  src="<%=Book.image%>"> 
             <p><%=Book.title%>
             </p></a>
              </div>
