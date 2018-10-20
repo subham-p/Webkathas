@@ -19,11 +19,17 @@ router.get("/author/:id", function(req, res){
             req.flash("error","user Not found")
             res.redirect("back")
         } else{
-            Book.find().where('author.id').equals(foundUser._id).exec( function(err, book){
+            Book.find().where('author.id').equals(foundUser._id).exec(async function(err, book){
                 if(err){
                     console.log(err);
                 } else{
-                    res.render("author/profile",{user:foundUser,book:book});
+                    
+                   var chapCount=0;
+                    await Book.chapters.forEach( function(chapter,i){
+                        chapCount++ 
+                         });
+                    
+                    res.render("author/profile",{user:foundUser,book:book,count:chapCount});
                 }
             });
         }
