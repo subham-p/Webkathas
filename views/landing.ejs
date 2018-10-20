@@ -238,14 +238,14 @@
   <div style="padding-top:10px;padding-bottom:10px;" class="jumbotron">
     <div class="row">
       <%if(recomended[0]!==undefined){%>
-      <div class="col-4 col-lg-4 col-md-4 col-sm-4">
+      <div class="col-12 col-lg-4 col-md-4 col-sm-12">
         <a class="hvr-grow" href="books/<%=recomended[0].bookid%>"><img class="profBokImg"   src="<%=recomended[0].image%>">
                   <p><%=recomended[0].title%></p>
                   </a>
 
       </div>
       
-      <div class="col-8 col-lg-8 col-md-8 col-sm-8">
+      <div class="col-12 col-lg-8 col-md-8 col-sm-12">
         <h3>Synopsis</h3>
         <%-recomended[0].synopsis%>
       </div>
